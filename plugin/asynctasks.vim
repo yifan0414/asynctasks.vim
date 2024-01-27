@@ -1313,6 +1313,12 @@ function! s:task_option(task)
 	if has_key(task, 'position')
 		let opts.position = task.position
 	endif
+	if has_key(task, 'width')
+	    	let opts.width = task.width
+	endif
+	if has_key(task, 'height')
+	    	let opts.height = task.height
+	endif
 	if has_key(task, 'silent') && task.silent
 		let opts.silent = 1
 	endif
