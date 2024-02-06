@@ -1914,6 +1914,7 @@ let s:macros = {
 			\ 'VIM_PATHNOEXT':
 			\ 'Current file name with full path but without extension',
 			\ 'VIM_CWD': 'Current directory',
+      \ 'VIM_PACKAGE': 'JAVA PACKAGE',
 			\ 'VIM_RELDIR': 'File path relativize to current directory',
 			\ 'VIM_RELNAME': 'File name relativize to current directory',
 			\ 'VIM_ROOT': 'Project root directory',
@@ -1959,6 +1960,7 @@ function! s:expand_macros()
 	let macros['VIM_FILEEXT'] = "." . expand("%:e")
 	let macros['VIM_FILETYPE'] = (&filetype)
 	let macros['VIM_CWD'] = getcwd()
+  let macros['VIM_PACKAGE'] = join(slice(split(expand('%:p:r'), '/'), -3), '.')
 	let macros['VIM_RELDIR'] = expand("%:h:.")
 	let macros['VIM_RELNAME'] = expand("%:p:.")
 	let macros['VIM_CWORD'] = expand("<cword>")
@@ -1999,7 +2001,7 @@ endfunc
 function! s:task_macro(wsl)
 	let macros = s:expand_macros()
 	let names = ['FILEPATH', 'FILENAME', 'FILEDIR', 'FILEEXT', 'FILETYPE']
-	let names += ['FILENOEXT', 'PATHNOEXT', 'CWD', 'RELDIR', 'RELNAME']
+	let names += ['FILENOEXT', 'PATHNOEXT', 'CWD', 'PACKAGE', 'RELDIR', 'RELNAME']
 	let names += ['CWORD', 'CFILE', 'CLINE', 'VERSION', 'SVRNAME', 'COLUMNS']
 	let names += ['LINES', 'GUI', 'ROOT', 'CWDNAME', 'PRONAME', 'DIRNAME']
 	let names += ['PROFILE']
